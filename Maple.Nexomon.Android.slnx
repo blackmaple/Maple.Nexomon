@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Maple.Nexomon.Android/Maple.Nexomon.Android.csproj" />
+  <Project Path="Maple.Nexomon.Metadata/Maple.Nexomon.Metadata.csproj" />
+</Solution>
