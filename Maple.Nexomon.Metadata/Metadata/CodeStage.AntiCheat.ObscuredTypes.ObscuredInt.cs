@@ -13,7 +13,7 @@ public partial class ObscuredInt
 
 
     [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
-    public readonly unsafe partial struct Ref_ObscuredInt
+    public unsafe partial struct Ref_ObscuredInt
     {
 
 
@@ -31,7 +31,7 @@ public partial class ObscuredInt
         /// struct 0x14 System.Int32 hiddenValue
         /// </summary>
         [System.Runtime.InteropServices.FieldOffsetAttribute(0x4)]
-        public readonly System.Int32 hiddenValue;
+        public System.Int32 hiddenValue;
 
 
         /// const string Name_Field_inited = "inited";
@@ -141,8 +141,8 @@ public partial class ObscuredInt
     /// </summary>
     /// <param name="value">struct System.Int32</param>
     /// <returns>struct System.Void</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute(".ctor")]
-    ///  extern void .CTOR (System.Int32 value);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute(".ctor")]
+    extern void CTOR(System.Int32 value);
 
 
     /// <summary>
@@ -273,8 +273,8 @@ public partial class ObscuredInt
     /// <param name="value">struct System.Int32</param>
     /// <param name="key">struct System.Int32</param>
     /// <returns>struct System.Int32</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Decrypt", Search = typeof(Search_ObscuredInt))]
-    /// static extern System.Int32 DECRYPT_00 (System.Int32 value, System.Int32 key);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Decrypt", Search = typeof(Search_ObscuredInt))]
+    static extern System.Int32 DECRYPT_00(System.Int32 value, System.Int32 key);
 
 
     /// <summary>
@@ -292,8 +292,8 @@ public partial class ObscuredInt
     /// <param name="value">struct System.Int32</param>
     /// <param name="key">struct System.Int32</param>
     /// <returns>struct System.Int32</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Encrypt", Search = typeof(Search_ObscuredInt))]
-    /// static extern System.Int32 ENCRYPT_00 (System.Int32 value, System.Int32 key);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Encrypt", Search = typeof(Search_ObscuredInt))]
+    static extern System.Int32 ENCRYPT_00(System.Int32 value, System.Int32 key);
 
 
     /// <summary>
@@ -450,240 +450,240 @@ public partial class ObscuredInt
     /// static extern CodeStage.AntiCheat.ObscuredTypes.ObscuredDouble OP_IMPLICIT_03 (CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value);
 
 
-    /// public static partial class Search_ObscuredInt
-    /// {
-    /// 
-    ///     
+    public static partial class Search_ObscuredInt
+    {
+        /// 
+        ///     
 
-    /// <summary>
-    ///   System.Int32 CompareTo(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt other)
-    /// </summary>
-    /// public static bool COMPARE_TO_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
-    ///     
-    ///  
-    /// 
-
-
-    /// <summary>
-    ///   System.Int32 CompareTo(System.Int32 other)
-    /// </summary>
-    /// public static bool COMPARE_TO_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Int32 CompareTo(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt other)
+        /// </summary>
+        /// public static bool COMPARE_TO_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Int32 CompareTo(System.Object obj)
-    /// </summary>
-    /// public static bool COMPARE_TO_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "System.Object");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Int32 CompareTo(System.Int32 other)
+        /// </summary>
+        /// public static bool COMPARE_TO_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  System.Int32 Decrypt(System.Int32 value, System.Int32 key)
-    /// </summary>
-    /// public static bool DECRYPT_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Decrypt", "System.Int32", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Int32 CompareTo(System.Object obj)
+        /// </summary>
+        /// public static bool COMPARE_TO_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompareTo", "System.Object");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  System.Int32 Decrypt(System.Int32 value)
-    /// </summary>
-    /// public static bool DECRYPT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Decrypt", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  System.Int32 Decrypt(System.Int32 value, System.Int32 key)
+        /// </summary>
+        public static bool DECRYPT_00(Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+            => Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Decrypt", "System.Int32", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  System.Int32 Encrypt(System.Int32 value, System.Int32 key)
-    /// </summary>
-    /// public static bool ENCRYPT_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Encrypt", "System.Int32", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  System.Int32 Decrypt(System.Int32 value)
+        /// </summary>
+        /// public static bool DECRYPT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Decrypt", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  System.Int32 Encrypt(System.Int32 value)
-    /// </summary>
-    /// public static bool ENCRYPT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Encrypt", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  System.Int32 Encrypt(System.Int32 value, System.Int32 key)
+        /// </summary>
+        public static bool ENCRYPT_00(Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+            => Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Encrypt", "System.Int32", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Boolean Equals(System.Object obj)
-    /// </summary>
-    /// public static bool EQUALS_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Equals", "System.Object");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  System.Int32 Encrypt(System.Int32 value)
+        /// </summary>
+        /// public static bool ENCRYPT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Encrypt", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Boolean Equals(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt obj)
-    /// </summary>
-    /// public static bool EQUALS_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Equals", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Boolean Equals(System.Object obj)
+        /// </summary>
+        /// public static bool EQUALS_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Equals", "System.Object");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt FromEncrypted(System.Int32 encrypted, System.Int32 key)
-    /// </summary>
-    /// public static bool FROM_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "FromEncrypted", "System.Int32", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Boolean Equals(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt obj)
+        /// </summary>
+        /// public static bool EQUALS_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "Equals", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt FromEncrypted(System.Int32 encrypted)
-    /// </summary>
-    /// public static bool FROM_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "FromEncrypted", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt FromEncrypted(System.Int32 encrypted, System.Int32 key)
+        /// </summary>
+        /// public static bool FROM_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "FromEncrypted", "System.Int32", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Int32 GetEncrypted(System.Int32& key)
-    /// </summary>
-    /// public static bool GET_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "GetEncrypted", "System.Int32&");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt FromEncrypted(System.Int32 encrypted)
+        /// </summary>
+        /// public static bool FROM_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "FromEncrypted", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Int32 GetEncrypted()
-    /// </summary>
-    /// public static bool GET_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "GetEncrypted");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Int32 GetEncrypted(System.Int32& key)
+        /// </summary>
+        /// public static bool GET_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "GetEncrypted", "System.Int32&");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Void SetEncrypted(System.Int32 encrypted, System.Int32 key)
-    /// </summary>
-    /// public static bool SET_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "SetEncrypted", "System.Int32", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Int32 GetEncrypted()
+        /// </summary>
+        /// public static bool GET_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "GetEncrypted");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.Void SetEncrypted(System.Int32 encrypted)
-    /// </summary>
-    /// public static bool SET_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "SetEncrypted", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Void SetEncrypted(System.Int32 encrypted, System.Int32 key)
+        /// </summary>
+        /// public static bool SET_ENCRYPTED_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "SetEncrypted", "System.Int32", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.String ToString()
-    /// </summary>
-    /// public static bool TO_STRING_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.Void SetEncrypted(System.Int32 encrypted)
+        /// </summary>
+        /// public static bool SET_ENCRYPTED_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "SetEncrypted", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.String ToString(System.String format)
-    /// </summary>
-    /// public static bool TO_STRING_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.String");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.String ToString()
+        /// </summary>
+        /// public static bool TO_STRING_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.String ToString(System.IFormatProvider provider)
-    /// </summary>
-    /// public static bool TO_STRING_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.IFormatProvider");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.String ToString(System.String format)
+        /// </summary>
+        /// public static bool TO_STRING_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.String");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    ///   System.String ToString(System.String format, System.IFormatProvider provider)
-    /// </summary>
-    /// public static bool TO_STRING_03 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.String", "System.IFormatProvider");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.String ToString(System.IFormatProvider provider)
+        /// </summary>
+        /// public static bool TO_STRING_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.IFormatProvider");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt op_Implicit(System.Int32 value)
-    /// </summary>
-    /// public static bool OP_IMPLICIT_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "System.Int32");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        ///   System.String ToString(System.String format, System.IFormatProvider provider)
+        /// </summary>
+        /// public static bool TO_STRING_03 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "ToString", "System.String", "System.IFormatProvider");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  System.Int32 op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
-    /// </summary>
-    /// public static bool OP_IMPLICIT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredInt op_Implicit(System.Int32 value)
+        /// </summary>
+        /// public static bool OP_IMPLICIT_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "System.Int32");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredFloat op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
-    /// </summary>
-    /// public static bool OP_IMPLICIT_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
-    ///     
-    ///  
-    /// 
+        /// <summary>
+        /// static  System.Int32 op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
+        /// </summary>
+        /// public static bool OP_IMPLICIT_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
+        ///     
+        ///  
+        /// 
 
 
-    /// <summary>
-    /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredDouble op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
-    /// </summary>
-    /// public static bool OP_IMPLICIT_03 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-    ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
-    ///     
-    ///  
-    /// 
-    /// 
-    /// }
+        /// <summary>
+        /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredFloat op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
+        /// </summary>
+        /// public static bool OP_IMPLICIT_02 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
+        ///     
+        ///  
+        /// 
+
+
+        /// <summary>
+        /// static  CodeStage.AntiCheat.ObscuredTypes.ObscuredDouble op_Implicit(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt value)
+        /// </summary>
+        /// public static bool OP_IMPLICIT_03 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "op_Implicit", "CodeStage.AntiCheat.ObscuredTypes.ObscuredInt");
+        ///     
+        ///  
+        /// 
+        /// 
+    }
 
 }

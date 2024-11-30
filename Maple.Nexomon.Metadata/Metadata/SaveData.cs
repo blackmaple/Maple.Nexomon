@@ -142,7 +142,7 @@ namespace Maple.Nexomon.Metadata;
 // [MonoCollectorSearchFieldAttribute(typeof(nint),"seenMonsters", "SEEN_MONSTERS")]
 
 // class 0x138 System.Collections.Generic.HashSet<DatabaseMonsters.Entry> ownedMonsters
-[MonoCollectorSearchFieldAttribute(typeof(PMonoHashSet<Ref_MonoHashSet_OptimizationDefault, DatabaseItems_Entry.Ptr_DatabaseItems_Entry, Ref_MonoSlot<DatabaseItems_Entry.Ptr_DatabaseItems_Entry>>), "ownedMonsters", "OWNED_MONSTERS")]
+[MonoCollectorSearchFieldAttribute(typeof(PMonoHashSet<Ref_MonoHashSet_OptimizationDefault, DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry, Ref_MonoSlot<DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry>>), "ownedMonsters", "OWNED_MONSTERS")]
 
 // class 0x140 System.Collections.Generic.Queue<UINexoboxes.OpeningDefinition> temp_queuedNexoboxOpenings
 // [MonoCollectorSearchFieldAttribute(typeof(nint),"temp_queuedNexoboxOpenings", "TEMP_QUEUED_NEXOBOX_OPENINGS")]

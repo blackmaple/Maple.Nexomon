@@ -1,3 +1,5 @@
+using Maple.MonoGameAssistant.MonoCollectorDataV2;
+
 namespace Maple.Nexomon.Metadata;
 
 /// <summary>
@@ -10,13 +12,13 @@ namespace Maple.Nexomon.Metadata;
 
 
 // struct 0x10 CodeStage.AntiCheat.ObscuredTypes.ObscuredInt coins
-// [MonoCollectorSearchFieldAttribute(typeof(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt),"coins", "COINS")]
+//[MonoCollectorSearchFieldAttribute(typeof(ObscuredInt.Ref_ObscuredInt), "coins", "COINS")]
 
 // struct 0x24 CodeStage.AntiCheat.ObscuredTypes.ObscuredInt diamonds
-// [MonoCollectorSearchFieldAttribute(typeof(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt),"diamonds", "DIAMONDS")]
+//[MonoCollectorSearchFieldAttribute(typeof(ObscuredInt.Ref_ObscuredInt), "diamonds", "DIAMONDS")]
 
 // struct 0x38 CodeStage.AntiCheat.ObscuredTypes.ObscuredInt tokens
-// [MonoCollectorSearchFieldAttribute(typeof(CodeStage.AntiCheat.ObscuredTypes.ObscuredInt),"tokens", "TOKENS")]
+//[MonoCollectorSearchFieldAttribute(typeof(ObscuredInt.Ref_ObscuredInt), "tokens", "TOKENS")]
 public partial class Wallet
 {
     //public const string Const_ImageName = "Assembly-CSharp.dll";
