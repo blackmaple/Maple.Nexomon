@@ -8,6 +8,53 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Metadata\BeatenTamers.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseAvatars.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseCrafters.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseDifficulty.EventEntry.cs" />
+	  <Compile Remove="Metadata\DatabaseDifficulty.RegionEntry.cs" />
+	  <Compile Remove="Metadata\DatabaseDistribution.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseElements.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseJournal.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseLanguages.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseMaps.Entry.cs" />
+	  <Compile Remove="Metadata\DatabasePets.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseQuests.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseRarity.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseShops.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseSkills.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseTamers.Entry.cs" />
+	  <Compile Remove="Metadata\DatabaseTrades.Entry.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.Core.CustomEffects.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.Core.CustomEffects.CustomAppearanceDefValues.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.Core.CustomEffects.CustomBehaviorDefValues.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.Core.CustomFeature.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.Core.CustomFunctionalities.cs" />
+	  <Compile Remove="Metadata\Febucci.UI.TextAnimator.CustomTag.cs" />
+	  <Compile Remove="Metadata\FsSaveData..cs" />
+	  <Compile Remove="Metadata\HeadIconsController.Entry.cs" />
+	  <Compile Remove="Metadata\ManagerBattle.CustomBattleState.cs" />
+	  <Compile Remove="Metadata\ManagerInventory..cs" />
+	  <Compile Remove="Metadata\OnlineFeatures.CodeRedemption.Commands.SetCustomMode.cs" />
+	  <Compile Remove="Metadata\OnlineFeatures.CodeRedemption.Commands.SetCustomModeLock.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSAUICustomConfiguration.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSAUIMenuInventory.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSA_ItemModel_UICustomConfiguration.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSA_ItemModel_UIMenuInventory.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSA_ViewHolder_UICustomConfiguration.cs" />
+	  <Compile Remove="Metadata\OSA_NEXOMON.OSA_ViewHolder_UIMenuInventory.cs" />
+	  <Compile Remove="Metadata\ResolutionProfiles.Entry.cs" />
+	  <Compile Remove="Metadata\SaveDataHandlerSwitch..cs" />
+	  <Compile Remove="Metadata\SaveDataMigration..cs" />
+	  <Compile Remove="Metadata\ServiceEpicGames.UploadSaveDataFailureReason.cs" />
+	  <Compile Remove="Metadata\StorageSystem.CustomModeCopyInfo.cs" />
+	  <Compile Remove="Metadata\UICustomConfiguration..cs" />
+	  <Compile Remove="Metadata\UIMenu.InventoryCloseIntent.cs" />
+	  <Compile Remove="Metadata\UIMenuInventory..cs" />
+	  <Compile Remove="Metadata\VFXEntry..cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Maple.MonoGameAssistant.Core" Version="1.0.91-rc" />
 		<PackageReference Include="Maple.MonoGameAssistant.GameDTO" Version="1.0.90-rc" />
 		<PackageReference Include="Maple.MonoGameAssistant.MonoCollectorDataV2" Version="1.0.90-rc" />

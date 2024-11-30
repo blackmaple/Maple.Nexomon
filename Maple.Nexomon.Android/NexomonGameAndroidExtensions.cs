@@ -20,6 +20,7 @@ namespace Maple.Nexomon.Android
             {
                 api.GameName = "Nexomon: Extinction(尼可梦:毁灭)";
                 api.GameDesc = "QQ:75351663";
+             //   api.DelayStartupSeconds = 10;
                 return api.CreateGameAndroidService<NexomonGameAndroidService>();
             });
         }
