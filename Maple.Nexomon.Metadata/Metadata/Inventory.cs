@@ -88,8 +88,8 @@ public partial class Inventory
     /// <param name="itemKey">class CodeStage.AntiCheat.ObscuredTypes.ObscuredString</param>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Consume")]
-    ///  extern CodeStage.AntiCheat.ObscuredTypes.ObscuredBool CONSUME (nint itemKey, CodeStage.AntiCheat.ObscuredTypes.ObscuredInt amount);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("Consume")]
+    extern ObscuredBool.Ref_ObscuredBool CONSUME(ObscuredString.Ptr_ObscuredString itemKey, ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
@@ -196,8 +196,8 @@ public partial class Inventory
     /// </summary>
     /// <param name="itemData">class DatabaseItems.Entry</param>
     /// <returns>struct System.Void</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("CompletelyRemoveItem", Search = typeof(Search_Inventory))]
-    ///  extern void COMPLETELY_REMOVE_ITEM_00 (nint itemData);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("CompletelyRemoveItem", Search = typeof(Search_Inventory))]
+    extern void COMPLETELY_REMOVE_ITEM_00(nint itemData);
 
 
     /// <summary>
@@ -205,8 +205,8 @@ public partial class Inventory
     /// </summary>
     /// <param name="itemKey">class CodeStage.AntiCheat.ObscuredTypes.ObscuredString</param>
     /// <returns>struct System.Void</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("CompletelyRemoveItem", Search = typeof(Search_Inventory))]
-    ///  extern void COMPLETELY_REMOVE_ITEM_01 (nint itemKey);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("CompletelyRemoveItem", Search = typeof(Search_Inventory))]
+    extern void COMPLETELY_REMOVE_ITEM_01(nint itemKey);
 
 
     /// <summary>
@@ -295,8 +295,8 @@ public partial class Inventory
         /// <summary>
         ///   System.Void CompletelyRemoveItem(DatabaseItems.Entry itemData)
         /// </summary>
-        /// public static bool COMPLETELY_REMOVE_ITEM_00 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompletelyRemoveItem", "DatabaseItems.Entry");
+        public static bool COMPLETELY_REMOVE_ITEM_00(Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+            => Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompletelyRemoveItem", "DatabaseItems.Entry");
         ///     
         ///  
         /// 
@@ -305,8 +305,8 @@ public partial class Inventory
         /// <summary>
         ///   System.Void CompletelyRemoveItem(CodeStage.AntiCheat.ObscuredTypes.ObscuredString itemKey)
         /// </summary>
-        /// public static bool COMPLETELY_REMOVE_ITEM_01 (Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
-        ///     =>  Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompletelyRemoveItem", "CodeStage.AntiCheat.ObscuredTypes.ObscuredString");
+        public static bool COMPLETELY_REMOVE_ITEM_01(Maple.MonoGameAssistant.Model.MonoMethodInfoDTO monoMethodInfoDTO)
+            => Maple.MonoGameAssistant.MonoCollector.MonoCollectorExtensions.SearchMonoMethodInfo(monoMethodInfoDTO, "CompletelyRemoveItem", "CodeStage.AntiCheat.ObscuredTypes.ObscuredString");
         ///     
         ///  
         /// 

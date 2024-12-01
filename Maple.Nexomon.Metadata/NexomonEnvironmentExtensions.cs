@@ -185,7 +185,6 @@ namespace Maple.Nexomon.Metadata
             }
             return false;
         }
-
         public static GameInventoryInfoDTO GetGameInventoryInfo(this NexomonEnvironment @this, GameInventoryObjectDTO objectDTO)
         {
             if (!Enum.TryParse<EnumGameInventoryType>(objectDTO.InventoryCategory, out var enumObject))
@@ -194,13 +193,7 @@ namespace Maple.Nexomon.Metadata
             }
             if (enumObject == EnumGameInventoryType.Item && @this.TryGetItem(objectDTO.InventoryObject, out var ptr_DatabaseItems_Entry))
             {
-                //if (ptr_DatabaseItems_Entry.IS_EQUIPPABLE || ptr_DatabaseItems_Entry.IS_EQUIPPED_BY_DEFAULT)
-                //{ 
-
-                //}
-
                 return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = Ptr_ObscuredInt.GetDecryptValue(@this.Ptr_SaveData.INVENTORY.GET_QUANTITY_00(ptr_DatabaseItems_Entry)) };
-
             }
             else if (enumObject == EnumGameInventoryType.Monster)
             {
@@ -210,6 +203,28 @@ namespace Maple.Nexomon.Metadata
         }
 
 
+        public static GameInventoryInfoDTO UpdateGameInventoryInfo(this NexomonEnvironment @this, GameInventoryModifyDTO modifyDTO)
+        {
+            if (!Enum.TryParse<EnumGameInventoryType>(modifyDTO.InventoryCategory, out var enumObject))
+            {
+                return GameException.Throw<GameInventoryInfoDTO>($"NOT FOUND:{modifyDTO.InventoryCategory}");
+            }
+            if (enumObject == EnumGameInventoryType.Item && @this.TryGetItem(modifyDTO.InventoryObject, out var ptr_DatabaseItems_Entry))
+            {
+                @this.Ptr_SaveData.INVENTORY.COMPLETELY_REMOVE_ITEM_00(ptr_DatabaseItems_Entry);
+                @this.Ptr_SaveData.INVENTORY.ADD_ITEM_00(ptr_DatabaseItems_Entry, ObscuredInt.Ptr_ObscuredInt.New(modifyDTO.InventoryCount));
+                return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = Ptr_ObscuredInt.GetDecryptValue(@this.Ptr_SaveData.INVENTORY.GET_QUANTITY_00(ptr_DatabaseItems_Entry)) };
+            }
+            else if (enumObject == EnumGameInventoryType.Monster && @this.TryGetMonster(modifyDTO.InventoryObject, out var ptr_DatabaseMonsters_Entry))
+            {
+                @this.Ptr_SaveData.REPORT_SEEN_NEXOMON(ptr_DatabaseMonsters_Entry);
+                @this.Ptr_SaveData.REPORT_RELEASE(ptr_DatabaseMonsters_Entry, true);
+
+                return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = 1 };
+            }
+            return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, };
+
+        }
     }
 
 

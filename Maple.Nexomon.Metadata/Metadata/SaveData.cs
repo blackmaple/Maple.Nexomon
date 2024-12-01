@@ -986,8 +986,8 @@ public partial class SaveData
     /// <param name="entry">class DatabaseMonsters.Entry</param>
     /// <param name="isCosmic">struct System.Boolean</param>
     /// <returns>struct System.Void</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportRelease")]
-    ///  extern void REPORT_RELEASE (nint entry, System.Boolean isCosmic);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportRelease")]
+    extern void REPORT_RELEASE(DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry, System.Boolean isCosmic);
 
 
     /// <summary>
@@ -995,8 +995,8 @@ public partial class SaveData
     /// </summary>
     /// <param name="entry">class DatabaseMonsters.Entry</param>
     /// <returns>struct System.Boolean</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportSeenNexomon")]
-    ///  extern System.Boolean REPORT_SEEN_NEXOMON (nint entry);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportSeenNexomon")]
+    extern System.Boolean REPORT_SEEN_NEXOMON(DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry);
 
 
     /// <summary>

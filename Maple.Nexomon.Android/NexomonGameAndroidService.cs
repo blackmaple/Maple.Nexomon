@@ -1,5 +1,6 @@
 ﻿using Maple.MonoGameAssistant.AndroidCore;
 using Maple.MonoGameAssistant.Core;
+using Maple.MonoGameAssistant.GameDTO;
 using Maple.MonoGameAssistant.Model;
 using Maple.MonoGameAssistant.MonoCollector;
 using Maple.Nexomon.Metadata;
@@ -19,7 +20,6 @@ namespace Maple.Nexomon.Android
 
         protected override NexomonMetadataContext LoadGameContext()
         {
-            //   NexomonMetadataContext.LoadGameContext(this.RuntimeContext, MonoGameAssistant.MonoCollectorDataV2.EnumMonoCollectorTypeVersion.APP, this.Logger);
             return new NexomonMetadataContext(this.RuntimeContext, MonoGameAssistant.MonoCollectorDataV2.EnumMonoCollectorTypeVersion.APP, this.Logger);
         }
 
@@ -47,10 +47,6 @@ namespace Maple.Nexomon.Android
             //}
 
         }
-
-
-
-
 
         private async IAsyncEnumerable<ClassContent> EnumClassContentAsync(IReadOnlyDictionary<string, string[]> enumKey)
         {
@@ -126,6 +122,51 @@ namespace Maple.Nexomon.Android
         //    await  this.MonoTaskAsync(p => p.GetNexomonEnvironment().LoadGameData()).ConfigureAwait(false);
         //    return await  base.GetSessionInfoAsync().ConfigureAwait(false);
         //}
+
+
+
+        public Task<NexomonEnvironment> GetGameEnvironmentAsync()
+        {
+            return this.MonoTaskAsync(static p => p.GetNexomonEnvironment());
+        }
+
+        public async Task<NexomonEnvironment> GetGameEnvironmentThrowIfNotLoadedAsync()
+        {
+            var env = await GetGameEnvironmentAsync().ConfigureAwait(false);
+            return env.InGame() ? env : GameException.ThrowIfNotLoaded<NexomonEnvironment>();
+        }
+
+        public override async ValueTask<GameCurrencyDisplayDTO[]> GetListCurrencyDisplayAsync()
+        {
+            var gameEnv = await this.GetGameEnvironmentAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.GetGameCurrencyDisplays(), gameEnv).ConfigureAwait(false);
+        }
+        public override async ValueTask<GameCurrencyInfoDTO> GetCurrencyInfoAsync(GameCurrencyObjectDTO currencyObjectDTO)
+        {
+            var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.gameEnv.GetGameCurrencyInfo(args.currencyObjectDTO), (gameEnv, currencyObjectDTO)).ConfigureAwait(false);
+        }
+        public override async ValueTask<GameCurrencyInfoDTO> UpdateCurrencyInfoAsync(GameCurrencyModifyDTO currencyModifyDTO)
+        {
+            var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.gameEnv.UpdateGameCurrencyInfo(args.currencyModifyDTO), (gameEnv, currencyModifyDTO)).ConfigureAwait(false);
+        }
+
+        public override async ValueTask<GameInventoryDisplayDTO[]> GetListInventoryDisplayAsync()
+        {
+            var gameEnv = await this.GetGameEnvironmentAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.GetGameInventoryDisplays(), gameEnv).ConfigureAwait(false);
+        }
+        public override async ValueTask<GameInventoryInfoDTO> GetInventoryInfoAsync(GameInventoryObjectDTO inventoryObjectDTO)
+        {
+            var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.gameEnv.GetGameInventoryInfo(args.inventoryObjectDTO), (gameEnv, inventoryObjectDTO)).ConfigureAwait(false);
+        }
+        public override async ValueTask<GameInventoryInfoDTO> UpdateInventoryInfoAsync(GameInventoryModifyDTO inventoryObjectDTO)
+        {
+            var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
+            return await this.MonoTaskAsync(static (p, args) => args.gameEnv.UpdateGameInventoryInfo(args.inventoryObjectDTO), (gameEnv, inventoryObjectDTO)).ConfigureAwait(false);
+        }
     }
 
 }
