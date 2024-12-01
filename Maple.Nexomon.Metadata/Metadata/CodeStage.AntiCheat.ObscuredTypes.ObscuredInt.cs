@@ -191,8 +191,8 @@ public partial class ObscuredInt
     ///   System.Int32 InternalDecrypt()
     /// </summary>
     /// <returns>struct System.Int32</returns>
-    /// [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("InternalDecrypt")]
-    ///  extern System.Int32 INTERNAL_DECRYPT ();
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("InternalDecrypt")]
+    extern System.Int32 INTERNAL_DECRYPT();
 
 
     /// <summary>

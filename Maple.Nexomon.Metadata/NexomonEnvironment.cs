@@ -16,7 +16,7 @@
 
         public bool InGame()
         {
-            return this.Ptr_SaveData && SaveData.Ptr_SaveData.DOES_SAVE_DATA_EXIST(this.Ptr_SaveData.SLOT_NUMBER);
+            return this.Ptr_SaveData.Valid();
         }
 
         public bool WaitGameData()

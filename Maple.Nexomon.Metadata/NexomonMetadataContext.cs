@@ -31,10 +31,10 @@ typeof(MonoCollectorClassInfo)
 
 
     // [MonoCollectorType(typeof(Custom))]
-    [MonoCollectorType(typeof(Equipment))]
+    //[MonoCollectorType(typeof(Equipment))]
 
 
-    [MonoCollectorType(typeof(ObscuredBool))]
+    //[MonoCollectorType(typeof(ObscuredBool))]
     // [MonoCollectorType(typeof(ObscuredByte))]
     // [MonoCollectorType(typeof(ObscuredChar))]
     // [MonoCollectorType(typeof(ObscuredShort))]

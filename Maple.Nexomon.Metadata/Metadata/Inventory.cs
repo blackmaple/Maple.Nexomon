@@ -1,3 +1,4 @@
+using Maple.MonoGameAssistant.Common;
 using Maple.MonoGameAssistant.Core;
 using Maple.MonoGameAssistant.MonoCollectorDataV2;
 
@@ -178,7 +179,8 @@ public partial class Inventory
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
     [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("AddItem", Search = typeof(Search_Inventory))]
-    extern ObscuredBool.Ref_ObscuredBool ADD_ITEM_00(DatabaseItems_Entry.Ptr_DatabaseItems_Entry itemData, ObscuredInt.Ref_ObscuredInt amount);
+    //extern ObscuredBool.Ref_ObscuredBool ADD_ITEM_00(DatabaseItems_Entry.Ptr_DatabaseItems_Entry itemData, ObscuredInt.Ref_ObscuredInt amount);
+    extern ObscuredBool.Ptr_ObscuredBool ADD_ITEM_00(MapleOut<ObscuredBool.Ref_ObscuredBool> val,DatabaseItems_Entry.Ptr_DatabaseItems_Entry itemData, ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
@@ -188,7 +190,8 @@ public partial class Inventory
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
     [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("AddItem", Search = typeof(Search_Inventory))]
-    extern ObscuredBool.Ref_ObscuredBool ADD_ITEM_01(ObscuredString.Ptr_ObscuredString itemKey, ObscuredInt.Ref_ObscuredInt amount);
+    //extern ObscuredBool.Ref_ObscuredBool ADD_ITEM_01(ObscuredString.Ptr_ObscuredString itemKey, ObscuredInt.Ref_ObscuredInt amount);
+    extern ObscuredBool.Ptr_ObscuredBool ADD_ITEM_01(MapleOut<ObscuredBool.Ref_ObscuredBool> val, ObscuredString.Ptr_ObscuredString itemKey, ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
@@ -215,7 +218,8 @@ public partial class Inventory
     /// <param name="info">class DatabaseItems.Entry</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</returns>
     [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetQuantity", Search = typeof(Search_Inventory))]
-    extern ObscuredInt.Ref_ObscuredInt GET_QUANTITY_00(DatabaseItems_Entry.Ptr_DatabaseItems_Entry info);
+    //extern ObscuredInt.Ref_ObscuredInt GET_QUANTITY_00(DatabaseItems_Entry.Ptr_DatabaseItems_Entry info);
+    extern ObscuredInt.Ptr_ObscuredInt GET_QUANTITY_00(MapleOut<ObscuredInt.Ref_ObscuredInt> val,DatabaseItems_Entry.Ptr_DatabaseItems_Entry info);
 
 
     /// <summary>
@@ -224,7 +228,8 @@ public partial class Inventory
     /// <param name="itemKey">class CodeStage.AntiCheat.ObscuredTypes.ObscuredString</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</returns>
     [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetQuantity", Search = typeof(Search_Inventory))]
-    extern ObscuredInt.Ref_ObscuredInt GET_QUANTITY_01(ObscuredString.Ptr_ObscuredString itemKey);
+    //extern ObscuredInt.Ref_ObscuredInt GET_QUANTITY_01(ObscuredString.Ptr_ObscuredString itemKey);
+    extern ObscuredInt.Ptr_ObscuredInt GET_QUANTITY_01(MapleOut<ObscuredInt.Ref_ObscuredInt> val, ObscuredString.Ptr_ObscuredString itemKey);
 
 
     public static partial class Search_Inventory
