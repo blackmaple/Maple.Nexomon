@@ -108,6 +108,9 @@ namespace Maple.Nexomon.Metadata
                 ref var ref_coins = ref Unsafe.AsRef<Ref_ObscuredInt>(b.ToPointer());
                 var c = ref_coins.hiddenValue ^ ref_coins.currentCryptoKey;
                 @this.Context.Logger.Info(c.ToString());
+                @this.Context.Logger.Info(pointer.INTERNAL_DECRYPT().ToString());
+                
+
                 int count = @this.Ptr_Wallet.COINS.GetDecryptValue();
                 return new GameCurrencyInfoDTO() { ObjectId = objectDTO.CurrencyObject, DisplayValue = count.ToString() };
 
@@ -134,16 +137,8 @@ namespace Maple.Nexomon.Metadata
 
             if (enumObject == EnumGameCurrencyType.COINS)
             {
-                @this.Context.Logger.Info("1");
-                var q = @this.Ptr_Wallet.COINS;
-                @this.Context.Logger.Info("2");
-                q.SetDecryptValue(modifyDTO.IntValue);
-                @this.Context.Logger.Info("3");
-                @this.Ptr_Wallet.RECEIVE_COINS(MapleRef<Ref_ObscuredInt>.FromRef(ref q), false);
-                // var val = @this.Ptr_Wallet.SetCoins(modifyDTO.IntValue);
-                @this.Context.Logger.Info("4");
-
-                return new GameCurrencyInfoDTO() { ObjectId = modifyDTO.CurrencyObject, DisplayValue = 0.ToString() };
+                var val = @this.Ptr_Wallet.SetCoins(modifyDTO.IntValue);
+                return new GameCurrencyInfoDTO() { ObjectId = modifyDTO.CurrencyObject, DisplayValue = val.ToString() };
             }
             else if (enumObject == EnumGameCurrencyType.DIAMONDS)
             {
