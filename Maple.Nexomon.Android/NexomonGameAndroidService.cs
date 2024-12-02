@@ -25,28 +25,28 @@ namespace Maple.Nexomon.Android
 
 
 
-        protected override async ValueTask LoadGameDataAsync()
-        {
-              await this.MonoTaskAsync(p => p.GetNexomonEnvironment().LoadGameData()).ConfigureAwait(false);
-            //Dictionary<string, string[]> enumKey = new()
-            //{
-            //    ["Assembly-CSharp"] = ["SaveData", "DatabaseMonsters", "Entry", "Equipment", "DatabaseItems", "Custom", "SETTING_ID", "Inventory", "Wallet"],
-            //    ["ACTk.Runtime"] = ["Obscured"]
+        //protected override async ValueTask LoadGameDataAsync()
+        //{
+        //      await this.MonoTaskAsync(p => p.GetNexomonEnvironment().LoadGameData()).ConfigureAwait(false);
+        //    //Dictionary<string, string[]> enumKey = new()
+        //    //{
+        //    //    ["Assembly-CSharp"] = ["SaveData", "DatabaseMonsters", "Entry", "Equipment", "DatabaseItems", "Custom", "SETTING_ID", "Inventory", "Wallet"],
+        //    //    ["ACTk.Runtime"] = ["Obscured"]
 
-            //};
-            //var basepath = "/sdcard/Download";
-            //await foreach (var fileData in EnumClassContentAsync(enumKey).ConfigureAwait(false))
-            //{
-            //    var filepath = Path.Combine(basepath, fileData.FullName);
-            //    using var stream = File.CreateText(filepath);
-            //    foreach (var str in fileData.Content.GetChunks())
-            //    {
-            //        await stream.WriteAsync(str).ConfigureAwait(false);
-            //    }
+        //    //};
+        //    //var basepath = "/sdcard/Download";
+        //    //await foreach (var fileData in EnumClassContentAsync(enumKey).ConfigureAwait(false))
+        //    //{
+        //    //    var filepath = Path.Combine(basepath, fileData.FullName);
+        //    //    using var stream = File.CreateText(filepath);
+        //    //    foreach (var str in fileData.Content.GetChunks())
+        //    //    {
+        //    //        await stream.WriteAsync(str).ConfigureAwait(false);
+        //    //    }
 
-            //}
+        //    //}
 
-        }
+        //}
 
         private async IAsyncEnumerable<ClassContent> EnumClassContentAsync(IReadOnlyDictionary<string, string[]> enumKey)
         {
@@ -166,6 +166,12 @@ namespace Maple.Nexomon.Android
         {
             var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
             return await this.MonoTaskAsync(static (p, args) => args.gameEnv.UpdateGameInventoryInfo(args.inventoryObjectDTO), (gameEnv, inventoryObjectDTO)).ConfigureAwait(false);
+        }
+
+        public override async ValueTask<GameSessionInfoDTO> GetSessionInfoAsync()
+        {
+            await this.MonoTaskAsync(static p => p.GetNexomonEnvironment().LoadGameDataThrowIfNotInit()).ConfigureAwait(false);
+            return await base.GetSessionInfoAsync().ConfigureAwait(false);
         }
     }
 

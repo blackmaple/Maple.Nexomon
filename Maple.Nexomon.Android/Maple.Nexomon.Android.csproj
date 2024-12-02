@@ -35,6 +35,18 @@
 		<InterceptorsPreviewNamespaces>$(InterceptorsPreviewNamespaces);Microsoft.AspNetCore.Http.Generated</InterceptorsPreviewNamespaces>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <DebugType>full</DebugType>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+	  <DebugType>full</DebugType>
+	</PropertyGroup>
+	<!--<ItemGroup>
+		 
+		<LinkerArg Include="/MAP" />
+
+	</ItemGroup>-->
 	<ItemGroup>
 		<PackageReference Include="Maple.MonoGameAssistant.AndroidCore" Version="1.0.92-rc" />
 		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />

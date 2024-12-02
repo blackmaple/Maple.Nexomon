@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic.FileIO;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using static Maple.Nexomon.Metadata.DatabaseItems_Entry;
 using static Maple.Nexomon.Metadata.ObscuredInt;
@@ -31,25 +32,44 @@ namespace Maple.Nexomon.Metadata
         public static NexomonEnvironment GetNexomonEnvironment(this NexomonMetadataContext context)
             => new(context);
 
-        public static void LoadGameData(this NexomonEnvironment @this)
+        public static void LoadGameDataThrowIfNotInit(this NexomonEnvironment @this)
         {
             using (@this.Context.Logger.Running())
             {
-                @this.WaitGameData();
-                ListItems.AddRange(@this.EnumItems());
-                ListMonsters.AddRange(@this.EnumMonsters());
+                var items = @this.EnumItems().ToArray();
+                var itemCount = items.Length;
+                if (itemCount <= 0)
+                {
+                    GameException.Throw("NOT INIT:DatabaseItems");
+                }
+
+                var monsters = @this.EnumMonsters().ToArray();
+                var monsterCount = monsters.Length;
+                if (monsterCount <= 0)
+                {
+                    GameException.Throw("NOT INIT:DatabaseMonsters");
+                }
+
+                ListItems.AddRange(items);
+                ListMonsters.AddRange(monsters);
+                @this.Context.Logger.LogInformation("EnumMonsters:{c}", monsterCount);
+                @this.Context.Logger.LogInformation("EnumItems:{c}", itemCount);
+
             }
         }
 
         static IEnumerable<GameInventoryDisplayDTO> EnumItems(this NexomonEnvironment @this)
         {
+
+
+
             foreach (var item in @this.DatabaseItems.DATA.AsRefArray())
             {
                 var itemEntry = item.Value;
                 var itemData = new GameInventoryDisplayDTO()
                 {
 
-                    ObjectId = item.Key.ToString()!,//itemEntry.ID.GET_DECRYPTED().ToString()!,
+                    ObjectId = itemEntry.ID.GET_DECRYPTED().ToString()!,
                     DisplayName = itemEntry.GET_LOCALIZED_NAME().ToString(),
                     DisplayCategory = nameof(EnumGameInventoryType.Item),
                     DisplayDesc = $"{itemEntry.GET_LOCALIZED_CATEGORY_NAME(false)}:{itemEntry.GET_LOCALIZED_DESCRIPTION()}",
@@ -65,6 +85,8 @@ namespace Maple.Nexomon.Metadata
 
         static IEnumerable<GameInventoryDisplayDTO> EnumMonsters(this NexomonEnvironment @this)
         {
+
+
             foreach (var item in @this.DatabaseMonsters.DATA)
             {
 
@@ -102,15 +124,6 @@ namespace Maple.Nexomon.Metadata
             }
             if (enumObject == EnumGameCurrencyType.COINS)
             {
-                var coins = @this.Ptr_Wallet.COINS;
-                var pointer = new Ptr_ObscuredInt((nint)Unsafe.AsPointer(ref coins));
-                var b = (nint)pointer;
-                ref var ref_coins = ref Unsafe.AsRef<Ref_ObscuredInt>(b.ToPointer());
-                var c = ref_coins.hiddenValue ^ ref_coins.currentCryptoKey;
-                @this.Context.Logger.Info(c.ToString());
-                @this.Context.Logger.Info(pointer.INTERNAL_DECRYPT().ToString());
-                
-
                 int count = @this.Ptr_Wallet.COINS.GetDecryptValue();
                 return new GameCurrencyInfoDTO() { ObjectId = objectDTO.CurrencyObject, DisplayValue = count.ToString() };
 
@@ -163,7 +176,7 @@ namespace Maple.Nexomon.Metadata
             return [.. ListItems, .. ListMonsters];
         }
 
-        static bool TryGetItem(this NexomonEnvironment @this, ReadOnlySpan<char> objectId, out DatabaseItems_Entry.Ptr_DatabaseItems_Entry ptr_DatabaseItems_Entry)
+        static bool TryGetDatabaseItem(this NexomonEnvironment @this, ReadOnlySpan<char> objectId, out DatabaseItems_Entry.Ptr_DatabaseItems_Entry ptr_DatabaseItems_Entry)
         {
             Unsafe.SkipInit(out ptr_DatabaseItems_Entry);
             foreach (var item in @this.DatabaseItems.DATA.AsRefArray())
@@ -176,38 +189,74 @@ namespace Maple.Nexomon.Metadata
             }
             return false;
         }
-        static bool TryGetMonster(this NexomonEnvironment @this, ReadOnlySpan<char> objectId, out DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry ptr_DatabaseMonsters_Entry)
+        static bool TryGetDatabaseMonster(this NexomonEnvironment @this, int objectId, out DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry ptr_DatabaseMonsters_Entry)
         {
             Unsafe.SkipInit(out ptr_DatabaseMonsters_Entry);
-            foreach (var item in @this.Ptr_SaveData.OWNED_MONSTERS.AsRefArray())
+            foreach (var item in @this.DatabaseMonsters.DATA)
             {
-                if (item.Value.UNIQUE_ID.ToString().AsSpan().SequenceEqual(objectId))
+                if (item.UNIQUE_ID == objectId)
                 {
-                    ptr_DatabaseMonsters_Entry = item.Value;
+                    ptr_DatabaseMonsters_Entry = item;
                     return true;
 
                 }
             }
             return false;
         }
+
+        static int GetOwnedItemCount(this NexomonEnvironment @this, ReadOnlySpan<char> objectId)
+        {
+            //var metadata = @this.Context.Inventory.ClassInfo.FieldInfos.Where(p => p.Name.AsSpan().Contains("content", StringComparison.OrdinalIgnoreCase))
+            //    .FirstOrDefault();
+            //if (metadata is not null)
+            //{
+            //    @this.Context.Logger.LogInformation("metadata:{i} ", metadata.Name);
+            //    foreach (var f in @this.Context.RuntimeContext.EnumMonoFields(metadata.FieldType.Pointer, MonoGameAssistant.Model.EnumMonoFieldOptions.EnumAndConst))
+            //    {
+            //        @this.Context.Logger.LogInformation("{f}={o}", f.Name, f.RawOffset);
+            //    }
+            //}
+            //@this.Context.Logger.LogInformation("find:{i} ", objectId.ToString());
+
+            foreach (var item in @this.Ptr_Inventory.CONTENT.AsRefArray())
+            {
+            //    @this.Context.Logger.LogInformation("enum:{i}", item.Key.GET_DECRYPTED().ToString());
+                if (item.Key.GET_DECRYPTED().AsReadOnlySpan().SequenceEqual(objectId))
+                {
+         //           @this.Context.Logger.LogInformation("GetOwnedItemCount:{k}^{h}={v}", item.Value.currentCryptoKey, item.Value.hiddenValue, item.Value.currentCryptoKey ^ item.Value.hiddenValue);
+                    return item.Value.GetDecryptValue();
+                }
+            }
+            return 0;
+        }
+        static bool GetOwnedMonsterCount(this NexomonEnvironment @this, int objectId)
+        {
+            foreach (var item in @this.Ptr_SaveData.OWNED_MONSTERS.AsRefArray())
+            {
+                if (item.Value.UNIQUE_ID == objectId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public static GameInventoryInfoDTO GetGameInventoryInfo(this NexomonEnvironment @this, GameInventoryObjectDTO objectDTO)
         {
             if (!Enum.TryParse<EnumGameInventoryType>(objectDTO.InventoryCategory, out var enumObject))
             {
                 return GameException.Throw<GameInventoryInfoDTO>($"NOT FOUND:{objectDTO.InventoryCategory}");
             }
-            if (enumObject == EnumGameInventoryType.Item && @this.TryGetItem(objectDTO.InventoryObject, out var ptr_DatabaseItems_Entry))
+            if (enumObject == EnumGameInventoryType.Item && @this.TryGetDatabaseItem(objectDTO.InventoryObject, out var _))
             {
-                //var ptr_val = @this.Ptr_SaveData.INVENTORY.GET_QUANTITY_00(MapleOut<ObscuredInt.Ref_ObscuredInt>.FromOut(out var ref_val), ptr_DatabaseItems_Entry);
-                //@this.Context.Logger.LogInformation("GET_QUANTITY_00:{ptr}=>{ref}", ptr_val.GET_DECRYPTED(), ref_val.AsPtr().GET_DECRYPTED());
+                return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = @this.GetOwnedItemCount(objectDTO.InventoryObject) };
+            }
+            else if (enumObject == EnumGameInventoryType.Monster && int.TryParse(objectDTO.InventoryObject, out var objectId) && @this.TryGetDatabaseMonster(objectId, out var ptr_DatabaseMonsters_Entry))
+            {
+                return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = @this.GetOwnedMonsterCount(ptr_DatabaseMonsters_Entry.UNIQUE_ID) ? 1 : 0 };
 
-                //return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = ptr_val.GET_DECRYPTED() };
             }
-            else if (enumObject == EnumGameInventoryType.Monster)
-            {
-                //return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = @this.TryGetMonster(objectDTO.InventoryObject, out _) ? 1 : 0 };
-            }
-            return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, };
+            return new GameInventoryInfoDTO() { ObjectId = objectDTO.InventoryObject, InventoryCount = -1 };
         }
 
 
@@ -217,24 +266,20 @@ namespace Maple.Nexomon.Metadata
             {
                 return GameException.Throw<GameInventoryInfoDTO>($"NOT FOUND:{modifyDTO.InventoryCategory}");
             }
-            if (enumObject == EnumGameInventoryType.Item && @this.TryGetItem(modifyDTO.InventoryObject, out var ptr_DatabaseItems_Entry))
+            if (enumObject == EnumGameInventoryType.Item && @this.TryGetDatabaseItem(modifyDTO.InventoryObject, out var ptr_DatabaseItems_Entry))
             {
-                //@this.Ptr_SaveData.INVENTORY.COMPLETELY_REMOVE_ITEM_00(ptr_DatabaseItems_Entry);
-                //@this.Ptr_SaveData.INVENTORY.ADD_ITEM_00(MapleOut<ObscuredBool.Ref_ObscuredBool>.FromOut(out _), ptr_DatabaseItems_Entry, ObscuredInt.Ptr_ObscuredInt.SetDecryptValue(modifyDTO.InventoryCount));
-
-
-                //var ptr_val = @this.Ptr_SaveData.INVENTORY.GET_QUANTITY_00(MapleOut<ObscuredInt.Ref_ObscuredInt>.FromOut(out var ref_val), ptr_DatabaseItems_Entry);
-                //@this.Context.Logger.LogInformation("GET_QUANTITY_00:{ptr}=>{ref}", ptr_val.GET_DECRYPTED(), ref_val.AsPtr().GET_DECRYPTED());
-                //return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = ptr_val.GET_DECRYPTED() };
+                @this.Ptr_SaveData.INVENTORY.COMPLETELY_REMOVE_ITEM_00(ptr_DatabaseItems_Entry);
+                var count = Ref_ObscuredInt.New(modifyDTO.InventoryCount);
+                @this.Ptr_SaveData.INVENTORY.ADD_ITEM_00(ptr_DatabaseItems_Entry, MapleRef<Ref_ObscuredInt>.FromRef(ref count));
+                return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = modifyDTO.InventoryCount };
             }
-            else if (enumObject == EnumGameInventoryType.Monster && @this.TryGetMonster(modifyDTO.InventoryObject, out var ptr_DatabaseMonsters_Entry))
+            else if (enumObject == EnumGameInventoryType.Monster && int.TryParse(modifyDTO.InventoryObject, out var objectId) && @this.TryGetDatabaseMonster(objectId, out var ptr_DatabaseMonsters_Entry))
             {
-                //@this.Ptr_SaveData.REPORT_SEEN_NEXOMON(ptr_DatabaseMonsters_Entry);
-                //@this.Ptr_SaveData.REPORT_RELEASE(ptr_DatabaseMonsters_Entry, true);
-
+                @this.Ptr_SaveData.REPORT_SEEN_NEXOMON(ptr_DatabaseMonsters_Entry);
+                @this.Ptr_SaveData.REPORT_CAPTURED_NEXOMON(ptr_DatabaseMonsters_Entry);
                 return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = 1 };
             }
-            return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, };
+            return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = -1 };
 
         }
     }
@@ -246,8 +291,8 @@ namespace Maple.Nexomon.Metadata
 
         unsafe partial struct Ref_ObscuredInt
         {
-            [System.Runtime.InteropServices.FieldOffsetAttribute(0x14)]
-            public readonly long bak;
+            //[System.Runtime.InteropServices.FieldOffsetAttribute(0x14)]
+            //public readonly long bak;
 
             public Ptr_ObscuredInt AsPtr()
             {
@@ -259,6 +304,19 @@ namespace Maple.Nexomon.Metadata
             public readonly int GetDecryptValue() => this.hiddenValue ^ this.currentCryptoKey;
 
             public void SetDecryptValue(int v) => this.hiddenValue = v ^ this.currentCryptoKey;
+
+            public Ref_ObscuredInt Init(int v)
+            {
+                var key = DateTime.Now.Second;
+                this.currentCryptoKey = key;
+                this.hiddenValue = v ^ key;
+                this.inited = true;
+                this.fakeValue = v;
+                this.fakeValueActive = true;
+                return this;
+            }
+
+            public static Ref_ObscuredInt New(int v) => new Ref_ObscuredInt().Init(v);
 
 
         }
@@ -277,6 +335,7 @@ namespace Maple.Nexomon.Metadata
     partial class Wallet
     {
 
+
         unsafe partial struct Ptr_Wallet
         {
             public int SetDiamonds(int v)
@@ -292,12 +351,14 @@ namespace Maple.Nexomon.Metadata
                 data.hiddenValue = v ^ data.currentCryptoKey;
                 return v;
             }
+
             public int SetTokens(int v)
             {
                 ref var data = ref GetMemberFieldValue<Maple.Nexomon.Metadata.ObscuredInt.Ref_ObscuredInt>(this, FieldOffset_TOKENS);
                 data.hiddenValue = v ^ data.currentCryptoKey;
                 return v;
             }
+
         }
     }
 }

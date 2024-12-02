@@ -19,9 +19,6 @@
             return this.Ptr_SaveData.Valid();
         }
 
-        public bool WaitGameData()
-        {
-            return SpinWait.SpinUntil(() => this.DatabaseItems.DATA.Valid() && this.DatabaseMonsters.DATA.Valid(), TimeSpan.FromSeconds(15L));
-        }
+   
     }
 }

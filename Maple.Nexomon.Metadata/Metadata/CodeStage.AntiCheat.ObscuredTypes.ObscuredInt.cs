@@ -12,7 +12,7 @@ public partial class ObscuredInt
 
 
 
-    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Explicit)]
+    [System.Runtime.InteropServices.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind.Sequential)]
     public unsafe partial struct Ref_ObscuredInt
     {
 
@@ -22,15 +22,15 @@ public partial class ObscuredInt
         /// <summary>
         /// struct 0x10 System.Int32 currentCryptoKey
         /// </summary>
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0x0)]
-        public readonly System.Int32 currentCryptoKey;
+       // [System.Runtime.InteropServices.FieldOffsetAttribute(0x0)]
+        public System.Int32 currentCryptoKey;
 
 
         /// const string Name_Field_hiddenValue = "hiddenValue";
         /// <summary>
         /// struct 0x14 System.Int32 hiddenValue
         /// </summary>
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0x4)]
+     //   [System.Runtime.InteropServices.FieldOffsetAttribute(0x4)]
         public System.Int32 hiddenValue;
 
 
@@ -38,24 +38,24 @@ public partial class ObscuredInt
         /// <summary>
         /// struct 0x18 System.Boolean inited
         /// </summary>
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0x8)]
-        public readonly System.Boolean inited;
+     //   [System.Runtime.InteropServices.FieldOffsetAttribute(0x8)]
+        public System.Boolean inited;
 
 
         /// const string Name_Field_fakeValue = "fakeValue";
         /// <summary>
         /// struct 0x1C System.Int32 fakeValue
         /// </summary>
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0xC)]
-        public readonly System.Int32 fakeValue;
+     //   [System.Runtime.InteropServices.FieldOffsetAttribute(0xC)]
+        public System.Int32 fakeValue;
 
 
         /// const string Name_Field_fakeValueActive = "fakeValueActive";
         /// <summary>
         /// struct 0x20 System.Boolean fakeValueActive
         /// </summary>
-        [System.Runtime.InteropServices.FieldOffsetAttribute(0x10)]
-        public readonly System.Boolean fakeValueActive;
+     //   [System.Runtime.InteropServices.FieldOffsetAttribute(0x10)]
+        public System.Boolean fakeValueActive;
 
     }
 

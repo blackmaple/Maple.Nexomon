@@ -76,28 +76,28 @@ public partial class Wallet
     ///   CodeStage.AntiCheat.ObscuredTypes.ObscuredInt GetCoins()
     /// </summary>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetCoins")]
+    // [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetCoins")]
     //extern ObscuredInt.Ref_ObscuredInt GET_COINS();
     //extern void GET_COINS(MapleOut<ObscuredInt.Ref_ObscuredInt> val);
-    extern ObscuredInt.Ref_ObscuredInt GET_COINS();
+    //extern ObscuredInt.Ref_ObscuredInt GET_COINS();
 
 
     /// <summary>
     ///   CodeStage.AntiCheat.ObscuredTypes.ObscuredInt GetDiamonds()
     /// </summary>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetDiamonds")]
+    //[Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetDiamonds")]
     //extern ObscuredInt.Ref_ObscuredInt GET_DIAMONDS();
-    extern void GET_DIAMONDS(MapleOut<ObscuredInt.Ref_ObscuredInt> val);
+    //extern void GET_DIAMONDS(MapleOut<ObscuredInt.Ref_ObscuredInt> val);
 
 
     /// <summary>
     ///   CodeStage.AntiCheat.ObscuredTypes.ObscuredInt GetTokens()
     /// </summary>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetTokens")]
+    //[Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("GetTokens")]
     //extern ObscuredInt.Ref_ObscuredInt GET_TOKENS();
-    extern void GET_TOKENS(MapleOut<ObscuredInt.Ref_ObscuredInt> val);
+    //extern void GET_TOKENS(MapleOut<ObscuredInt.Ref_ObscuredInt> val);
 
 
     /// <summary>
@@ -106,8 +106,8 @@ public partial class Wallet
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <param name="countTowardsAchievements">struct System.Boolean</param>
     /// <returns>struct System.Void</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveCoins")]
-    extern void RECEIVE_COINS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount, System.Boolean countTowardsAchievements);
+    //[Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveCoins")]
+    //extern void RECEIVE_COINS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount, System.Boolean countTowardsAchievements);
 
 
     /// <summary>
@@ -115,8 +115,8 @@ public partial class Wallet
     /// </summary>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct System.Void</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveDiamonds")]
-    extern void RECEIVE_DIAMONDS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount);
+    //[Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveDiamonds")]
+    //extern void RECEIVE_DIAMONDS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount);
 
 
     /// <summary>
@@ -124,8 +124,8 @@ public partial class Wallet
     /// </summary>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct System.Void</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveTokens")]
-    extern void RECEIVE_TOKENS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount);
+    // [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReceiveTokens")]
+    //  extern void RECEIVE_TOKENS(MapleRef<ObscuredInt.Ref_ObscuredInt> amount);
 
 
     /// <summary>
@@ -133,8 +133,8 @@ public partial class Wallet
     /// </summary>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendCoins")]
-    extern ObscuredBool.Ref_ObscuredBool SPEND_COINS(ObscuredInt.Ref_ObscuredInt amount);
+    //  [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendCoins")]
+    // extern ObscuredBool.Ref_ObscuredBool SPEND_COINS(ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
@@ -142,8 +142,8 @@ public partial class Wallet
     /// </summary>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendDiamonds")]
-    extern ObscuredBool.Ref_ObscuredBool SPEND_DIAMONDS(ObscuredInt.Ref_ObscuredInt amount);
+    //  [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendDiamonds")]
+    //  extern ObscuredBool.Ref_ObscuredBool SPEND_DIAMONDS(ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
@@ -151,8 +151,8 @@ public partial class Wallet
     /// </summary>
     /// <param name="amount">struct CodeStage.AntiCheat.ObscuredTypes.ObscuredInt</param>
     /// <returns>struct CodeStage.AntiCheat.ObscuredTypes.ObscuredBool</returns>
-    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendTokens")]
-    extern ObscuredBool.Ref_ObscuredBool SPEND_TOKENS(ObscuredInt.Ref_ObscuredInt amount);
+    //  [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("SpendTokens")]
+    //  extern ObscuredBool.Ref_ObscuredBool SPEND_TOKENS(ObscuredInt.Ref_ObscuredInt amount);
 
 
     /// <summary>
