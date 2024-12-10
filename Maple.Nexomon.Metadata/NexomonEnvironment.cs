@@ -12,6 +12,7 @@
         public Inventory.Ptr_Inventory Ptr_Inventory => Ptr_SaveData.INVENTORY;
         public Equipment.Ptr_Equipment Ptr_Equipment => Ptr_SaveData.EQUIPMENT;
         public Wallet.Ptr_Wallet Ptr_Wallet => Ptr_SaveData.WALLET;
+        public StorageSystem.Ptr_StorageSystem Ptr_StorageSystem => Ptr_SaveData.STORAGE;
 
 
         public bool InGame()
@@ -19,6 +20,6 @@
             return this.Ptr_SaveData.Valid();
         }
 
-   
+
     }
 }
