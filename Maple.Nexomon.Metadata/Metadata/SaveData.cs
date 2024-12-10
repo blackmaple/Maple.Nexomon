@@ -82,7 +82,7 @@ namespace Maple.Nexomon.Metadata;
 // [MonoCollectorSearchFieldAttribute(typeof(nint),"party", "PARTY")]
 
 // class 0xA8 StorageSystem storage
-// [MonoCollectorSearchFieldAttribute(typeof(nint),"storage", "STORAGE")]
+[MonoCollectorSearchFieldAttribute(typeof(StorageSystem.Ptr_StorageSystem), "storage", "STORAGE")]
 
 // class 0xB0 Wallet wallet
 [MonoCollectorSearchFieldAttribute(typeof(Wallet.Ptr_Wallet), "wallet", "WALLET")]
@@ -968,8 +968,8 @@ public partial class SaveData
     /// </summary>
     /// <param name="entry">class DatabaseMonsters.Entry</param>
     /// <returns>struct System.Boolean</returns>
-      [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportCapturedNexomon")]
-       extern System.Boolean REPORT_CAPTURED_NEXOMON (DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry);
+    [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportCapturedNexomon")]
+    extern System.Boolean REPORT_CAPTURED_NEXOMON(DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry);
 
 
     /// <summary>
@@ -986,8 +986,8 @@ public partial class SaveData
     /// <param name="entry">class DatabaseMonsters.Entry</param>
     /// <param name="isCosmic">struct System.Boolean</param>
     /// <returns>struct System.Void</returns>
-   // [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportRelease")]
-   // extern void REPORT_RELEASE(DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry, System.Boolean isCosmic);
+    // [Maple.MonoGameAssistant.MonoCollectorDataV2.MonoCollectorMethodAttribute("ReportRelease")]
+    // extern void REPORT_RELEASE(DatabaseMonsters_Entry.Ptr_DatabaseMonsters_Entry entry, System.Boolean isCosmic);
 
 
     /// <summary>

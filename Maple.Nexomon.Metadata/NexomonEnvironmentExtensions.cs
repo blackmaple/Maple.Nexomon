@@ -220,10 +220,10 @@ namespace Maple.Nexomon.Metadata
 
             foreach (var item in @this.Ptr_Inventory.CONTENT.AsRefArray())
             {
-            //    @this.Context.Logger.LogInformation("enum:{i}", item.Key.GET_DECRYPTED().ToString());
+                //    @this.Context.Logger.LogInformation("enum:{i}", item.Key.GET_DECRYPTED().ToString());
                 if (item.Key.GET_DECRYPTED().AsReadOnlySpan().SequenceEqual(objectId))
                 {
-         //           @this.Context.Logger.LogInformation("GetOwnedItemCount:{k}^{h}={v}", item.Value.currentCryptoKey, item.Value.hiddenValue, item.Value.currentCryptoKey ^ item.Value.hiddenValue);
+                    //           @this.Context.Logger.LogInformation("GetOwnedItemCount:{k}^{h}={v}", item.Value.currentCryptoKey, item.Value.hiddenValue, item.Value.currentCryptoKey ^ item.Value.hiddenValue);
                     return item.Value.GetDecryptValue();
                 }
             }
@@ -276,7 +276,11 @@ namespace Maple.Nexomon.Metadata
             else if (enumObject == EnumGameInventoryType.Monster && int.TryParse(modifyDTO.InventoryObject, out var objectId) && @this.TryGetDatabaseMonster(objectId, out var ptr_DatabaseMonsters_Entry))
             {
                 @this.Ptr_SaveData.REPORT_SEEN_NEXOMON(ptr_DatabaseMonsters_Entry);
-                @this.Ptr_SaveData.REPORT_CAPTURED_NEXOMON(ptr_DatabaseMonsters_Entry);
+                //@this.Ptr_SaveData.REPORT_CAPTURED_NEXOMON(ptr_DatabaseMonsters_Entry);
+
+                var ptr_unit = Unit.Ptr_Unit.CREATE(ptr_DatabaseMonsters_Entry.NAME, 99, true);
+                var _ = @this.Ptr_StorageSystem.DEPOSIT_ANYWHERE(ptr_unit, true);
+
                 return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = 1 };
             }
             return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = -1 };

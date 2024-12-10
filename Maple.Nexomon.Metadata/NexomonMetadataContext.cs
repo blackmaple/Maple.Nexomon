@@ -5,6 +5,7 @@ using Maple.MonoGameAssistant.Model;
 using Maple.MonoGameAssistant.MonoCollector;
 using Maple.MonoGameAssistant.MonoCollectorDataV2;
 using Microsoft.Extensions.Logging;
+using System.Data.SqlTypes;
 using System.Runtime.CompilerServices;
 
 namespace Maple.Nexomon.Metadata
@@ -49,6 +50,9 @@ typeof(MonoCollectorClassInfo)
     // [MonoCollectorType(typeof(ObscuredULong))]
     //  [MonoCollectorType(typeof(ObscuredSByte))]
 
+    [MonoCollectorType(typeof(StorageSystem))]
+    [MonoCollectorType(typeof(Box))]
+    [MonoCollectorType(typeof(Unit))]
 
     public partial class NexomonMetadata
     {
