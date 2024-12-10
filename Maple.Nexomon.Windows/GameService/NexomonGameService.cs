@@ -3,6 +3,9 @@ using Maple.MonoGameAssistant.GameContext;
 using Maple.MonoGameAssistant.GameDTO;
 using Maple.MonoGameAssistant.HotKey;
 using Maple.MonoGameAssistant.Model;
+using Maple.MonoGameAssistant.UITask;
+using Maple.MonoGameAssistant.UnityCore;
+using Maple.MonoGameAssistant.UnityCore.UnityEngine;
 using Maple.Nexomon.Metadata;
 using Microsoft.Extensions.Logging;
 
@@ -20,13 +23,17 @@ namespace Maple.Nexomon.Windows.GameService
             return new NexomonMetadataContext(RuntimeContext, MonoGameAssistant.MonoCollectorDataV2.EnumMonoCollectorTypeVersion.APP, Logger);
         }
 
+        protected sealed override UnityEngineContext? LoadUnityEngineContext()
+        {
+            return new UnityEngineContext_IL2CPP(this.RuntimeContext, this.Logger);
+        }
 
         public Task<NexomonEnvironment> GetGameEnvironmentAsync()
         {
             return this.MonoTaskAsync(static p => p.GetNexomonEnvironment());
         }
 
-        public  async Task<NexomonEnvironment> GetGameEnvironmentThrowIfNotLoadedAsync()
+        public async Task<NexomonEnvironment> GetGameEnvironmentThrowIfNotLoadedAsync()
         {
             var env = await GetGameEnvironmentAsync().ConfigureAwait(false);
             return env.InGame() ? env : GameException.ThrowIfNotLoaded<NexomonEnvironment>();
@@ -51,7 +58,15 @@ namespace Maple.Nexomon.Windows.GameService
         public sealed override async ValueTask<GameInventoryDisplayDTO[]> GetListInventoryDisplayAsync()
         {
             var gameEnv = await this.GetGameEnvironmentAsync().ConfigureAwait(false);
-            return await this.MonoTaskAsync(static (p, args) => args.GetGameInventoryDisplays(), gameEnv).ConfigureAwait(false);
+            var items = await this.MonoTaskAsync(static (p, args) => args.GetGameInventoryDisplays(), gameEnv).ConfigureAwait(false);
+            foreach (var item in items)
+            {
+                if (this.GameSettings.TryGetGameResourceUrl(item.DisplayCategory!, $"{item.ObjectId}.png", out var url))
+                {
+                    item.DisplayImage = url;
+                }
+            }
+            return items;
         }
         public sealed override async ValueTask<GameInventoryInfoDTO> GetInventoryInfoAsync(GameInventoryObjectDTO inventoryObjectDTO)
         {
@@ -69,5 +84,97 @@ namespace Maple.Nexomon.Windows.GameService
             await this.MonoTaskAsync(static p => p.GetNexomonEnvironment().LoadGameDataThrowIfNotInit()).ConfigureAwait(false);
             return await base.GetSessionInfoAsync().ConfigureAwait(false);
         }
+
+        public sealed override async ValueTask<GameSessionInfoDTO> LoadResourceAsync()
+        {
+            var gameEnv = await this.GetGameEnvironmentThrowIfNotLoadedAsync().ConfigureAwait(false);
+            if (UnityEngineContext is not null)
+            {
+                //   await this.MonoTaskAsync(static (p, args) => args.SetAllGameInventoryInfo(), (gameEnv)).ConfigureAwait(false);
+                var images = await this.UITaskAsync((p, args) => GetImageDatas(args.gameEnv, args.UnityEngineContext).ToArray(), (gameEnv, this.UnityEngineContext)).ConfigureAwait(false);
+                foreach (var image in images)
+                {
+                    this.GameSettings.WriteImageFile(image.ImageData.AsReadOnlySpan(), image.Category, $"{image.Name}.png");
+                }
+            }
+            return await base.LoadResourceAsync().ConfigureAwait(false);
+        }
+
+        static IEnumerable<UnitySpriteImageData> GetImageDatas(NexomonEnvironment @this, UnityEngineContext unityEngineContext)
+        {
+            foreach (var monster in @this.Context.Cache.PREVIEWS.AsRefArray())
+            {
+                var image = unityEngineContext.ReadSprite2Png(monster.Value, 2);
+                if (image.Valid())
+                {
+                    yield return new UnitySpriteImageData()
+                    {
+                        Name = monster.Key.UNIQUE_ID.ToString(),
+                        Category = NexomonEnvironmentExtensions.EnumGameInventoryType.Monster.ToString(),
+                        ImageData = image
+                    };
+                }
+            }
+            foreach (var monster in @this.Context.Cache.ITEM_ICONS.AsRefArray())
+            {
+                var image = unityEngineContext.ReadSprite2Png(monster.Value, 2);
+                if (image.Valid())
+                {
+                    yield return new UnitySpriteImageData()
+                    {
+                        Name = monster.Key.ID.GET_DECRYPTED().ToString(),
+                        Category = NexomonEnvironmentExtensions.EnumGameInventoryType.Item.ToString(),
+                        ImageData = image
+                    };
+                }
+            }
+
+            foreach (var monster in @this.Context.Cache.MINIS.AsRefArray())
+            {
+                var image = unityEngineContext.ReadSprite2Png(monster.Value, 2);
+                if (image.Valid())
+                {
+                    yield return new UnitySpriteImageData()
+                    {
+                        Name = monster.Key.ToString(),
+                        Category = "MINIS",
+                        ImageData = image
+                    };
+                }
+            }
+            foreach (var monster in @this.Context.Cache.JOURNAL_PICTURES.AsRefArray())
+            {
+                var image = unityEngineContext.ReadSprite2Png(monster.Value, 2);
+                if (image.Valid())
+                {
+                    yield return new UnitySpriteImageData()
+                    {
+                        Name = monster.Key.ToString(),
+                        Category = "JOURNAL_PICTURES",
+                        ImageData = image
+                    };
+                }
+            }
+            foreach (var monster in @this.Context.Cache.PORTRAITS.AsRefArray())
+            {
+                var image = unityEngineContext.ReadSprite2Png(monster.Value, 2);
+                if (image.Valid())
+                {
+                    yield return new UnitySpriteImageData()
+                    {
+                        Name = monster.Key.ToString(),
+                        Category = "PORTRAITS",
+                        ImageData = image
+                    };
+                }
+            }
+           
+
+
+        }
+
+
+
+
     }
 }

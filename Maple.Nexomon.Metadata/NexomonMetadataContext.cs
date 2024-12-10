@@ -54,6 +54,8 @@ typeof(MonoCollectorClassInfo)
     [MonoCollectorType(typeof(Box))]
     [MonoCollectorType(typeof(Unit))]
 
+
+    [MonoCollectorType(typeof(Cache))]
     public partial class NexomonMetadata
     {
 

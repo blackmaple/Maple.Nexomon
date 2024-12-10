@@ -8,6 +8,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using static Maple.Nexomon.Metadata.DatabaseItems_Entry;
+using static Maple.Nexomon.Metadata.DatabaseMonsters_Entry;
 using static Maple.Nexomon.Metadata.ObscuredInt;
 
 namespace Maple.Nexomon.Metadata
@@ -17,7 +18,7 @@ namespace Maple.Nexomon.Metadata
         static List<GameInventoryDisplayDTO> ListItems { get; } = new List<GameInventoryDisplayDTO>(1024);
         static List<GameInventoryDisplayDTO> ListMonsters { get; } = new List<GameInventoryDisplayDTO>(1024);
 
-        enum EnumGameInventoryType
+        public enum EnumGameInventoryType
         {
             Item = 0,
             Monster = 1,
@@ -285,6 +286,20 @@ namespace Maple.Nexomon.Metadata
             }
             return new GameInventoryInfoDTO() { ObjectId = modifyDTO.InventoryObject, InventoryCount = -1 };
 
+        }
+
+
+        public static void SetAllGameInventoryInfo(this NexomonEnvironment @this)
+        {
+            var count = Ref_ObscuredInt.New(1);
+            foreach (var item in @this.DatabaseItems.DATA.AsRefArray())
+            {
+                @this.Ptr_SaveData.INVENTORY.ADD_ITEM_00(item.Value, MapleRef<Ref_ObscuredInt>.FromRef(ref count));
+            }
+            foreach (var item in @this.DatabaseMonsters.DATA)
+            {
+                @this.Ptr_SaveData.REPORT_SEEN_NEXOMON(item);
+            }
         }
     }
 
