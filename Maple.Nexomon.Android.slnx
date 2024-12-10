@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Maple.Nexomon.Android/Maple.Nexomon.Android.csproj" />
   <Project Path="Maple.Nexomon.Metadata/Maple.Nexomon.Metadata.csproj" />
+  <Project Path="Maple.Nexomon.Windows/Maple.Nexomon.Windows.csproj" Id="22ec3045-efb5-48c6-99f9-a76b01aee445" />
 </Solution>
