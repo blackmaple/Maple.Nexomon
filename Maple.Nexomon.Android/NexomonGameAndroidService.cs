@@ -50,56 +50,56 @@ namespace Maple.Nexomon.Android
 
         //}
 
-        private async IAsyncEnumerable<ClassContent> EnumClassContentAsync(IReadOnlyDictionary<string, string[]> enumKey)
-        {
+        //private async IAsyncEnumerable<ClassContent> EnumClassContentAsync(IReadOnlyDictionary<string, string[]> enumKey)
+        //{
 
 
 
-            var images = await this.ApiService.EnumMonoImagesAsync().ConfigureAwait(false);
-            foreach (var image in images)
-            {
-                foreach (var key in enumKey)
-                {
-                    if (image.Name.AsSpan().Contains(key.Key, StringComparison.OrdinalIgnoreCase))
-                    {
-                        var objs = await this.ApiService.EnumMonoObjectsAsync(image.Pointer).ConfigureAwait(false);
+        //    var images = await this.ApiService.EnumMonoImagesAsync().ConfigureAwait(false);
+        //    foreach (var image in images)
+        //    {
+        //        foreach (var key in enumKey)
+        //        {
+        //            if (image.Name.AsSpan().Contains(key.Key, StringComparison.OrdinalIgnoreCase))
+        //            {
+        //                var objs = await this.ApiService.EnumMonoObjectsAsync(image.Pointer).ConfigureAwait(false);
 
-                        foreach (var obj in objs)
-                        {
+        //                foreach (var obj in objs)
+        //                {
 
-                            foreach (var objName in key.Value)
-                            {
-                                if (obj.Name.AsSpan().StartsWith(objName, StringComparison.OrdinalIgnoreCase))
-                                {
-                                    var details = await this.ApiService.EnumMonoClassDetailAsync(obj.Pointer, EnumMonoFieldOptions.EnumAndConst).ConfigureAwait(false);
-                                    var content = MonoCollectorGeneratorV0.OutputStringBuilder(
-                                           details.ClassInfoDTO,
-                                           details.FieldInfos ?? [],
-                                           details.MethodInfos ?? [],
-                                           details.ParentClassInfos ?? [],
-                                           details.InterfaceInfos ?? [], 256);
+        //                    foreach (var objName in key.Value)
+        //                    {
+        //                        if (obj.Name.AsSpan().StartsWith(objName, StringComparison.OrdinalIgnoreCase))
+        //                        {
+        //                            var details = await this.ApiService.EnumMonoClassDetailAsync(obj.Pointer, EnumMonoFieldOptions.EnumAndConst).ConfigureAwait(false);
+        //                            var content = MonoCollectorGeneratorV0.OutputStringBuilder(
+        //                                   details.ClassInfoDTO,
+        //                                   details.FieldInfos ?? [],
+        //                                   details.MethodInfos ?? [],
+        //                                   details.ParentClassInfos ?? [],
+        //                                   details.InterfaceInfos ?? [], 256);
 
-                                    yield return new ClassContent() { FullName = details.ClassInfoDTO.FullName ?? Guid.CreateVersion7().ToString("N"), Content = content };
-
-                                    
-                                }
+        //                            yield return new ClassContent() { FullName = details.ClassInfoDTO.FullName ?? Guid.CreateVersion7().ToString("N"), Content = content };
 
 
-                            }
-                        }
-                    }
-
-                }
+        //                        }
 
 
-            }
+        //                    }
+        //                }
+        //            }
 
-        }
-        class ClassContent
-        {
-            public required string FullName { set; get; }
-            public required StringBuilder Content { set; get; }
-        }
+        //        }
+
+
+        //    }
+
+        //}
+        //class ClassContent
+        //{
+        //    public required string FullName { set; get; }
+        //    public required StringBuilder Content { set; get; }
+        //}
 
         //public override async ValueTask<GameSessionInfoDTO> GetSessionInfoAsync()
         //{

@@ -25,25 +25,25 @@ namespace Maple.Nexomon.Android
             });
         }
 
-        [UnmanagedCallersOnly(EntryPoint = nameof(JNI_OnUnload))]
-        public static void JNI_OnUnload(PTR_JAVA_VM javaVM, JOBJECT reserved)
-        {
-            AndroidApiExtensions.JNI_OnUnloadImp(javaVM, reserved);
-        }
+        //[UnmanagedCallersOnly(EntryPoint = nameof(JNI_OnUnload))]
+        //public static void JNI_OnUnload(PTR_JAVA_VM javaVM, JOBJECT reserved)
+        //{
+        //    AndroidApiExtensions.JNI_OnUnloadImp(javaVM, reserved);
+        //}
 
 
-        [UnmanagedCallersOnly(EntryPoint = nameof(ApiAction))]
-        public static JBOOLEAN ApiAction(PTR_JNI_ENV jniEnv, JOBJECT instance, JINT actionIndex, JSTRING json)
-        {
-            return AndroidApiExtensions.ApiActionImp(jniEnv, instance, actionIndex, json);
-        }
+        //[UnmanagedCallersOnly(EntryPoint = nameof(ApiAction))]
+        //public static JBOOLEAN ApiAction(PTR_JNI_ENV jniEnv, JOBJECT instance, JINT actionIndex, JSTRING json)
+        //{
+        //    return AndroidApiExtensions.ApiActionImp(jniEnv, instance, actionIndex, json);
+        //}
 
 
-        [UnmanagedCallersOnly(EntryPoint = nameof(TestAction))]
-        public static JBOOLEAN TestAction(PTR_JNI_ENV jniEnv, JOBJECT instance, JSTRING text)
-        {
-            return AndroidApiExtensions.TestActionImp(jniEnv, instance, text);
-        }
+        //[UnmanagedCallersOnly(EntryPoint = nameof(TestAction))]
+        //public static JBOOLEAN TestAction(PTR_JNI_ENV jniEnv, JOBJECT instance, JSTRING text)
+        //{
+        //    return AndroidApiExtensions.TestActionImp(jniEnv, instance, text);
+        //}
 
 
 
