@@ -1,4 +1,4 @@
-# Maple.Nexomon.Android
+# Maple.Nexomon
 
 ##  NuGet
 [NuGet](https://www.nuget.org/profiles/BlackMaple)
