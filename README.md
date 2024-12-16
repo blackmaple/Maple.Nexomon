@@ -1,4 +1,7 @@
 # Maple.Nexomon.Android
 
-## game download 
-https://store.steampowered.com/app/1196630/_/
+##  NuGet
+[NuGet](https://www.nuget.org/profiles/BlackMaple)
+
+## Github
+[Github](https://github.com/blackmaple/Maple.MonoGameAssistant)
